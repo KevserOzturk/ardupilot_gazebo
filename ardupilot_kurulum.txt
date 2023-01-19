@@ -1,0 +1,96 @@
+## install anconda
+
+bash ~/Downloads/Anaconda3-2022.10-Linux-x86_64.sh
+conda config --set auto_activate_base false
+
+conda activate
+conda create -n ardu python=3.9
+conda activate ardu
+
+
+## install git
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install python-pip python-dev
+sudo apt-get install python3-pip
+sudo apt-get install git
+sudo apt-get install gitk git-gui
+git config --global user.name “mfurkanturk”
+git config --global user.email “furkanturk2000@gmail.com”
+sudo apt-get update
+
+## clone ardupilot to home directory
+
+git clone https://github.com/mfurkanturk/ardupilot.git
+cd ardupilot
+git submodule update --init --recursive
+
+Tools/environment_install/install-prereqs-ubuntu.sh -y
+
+. ~/.profile
+
+# logout
+# login
+
+
+## install mavproxy
+
+sudo apt-get install python3-dev python3-opencv python3-wxgtk4.0 python3-pip python3-matplotlib python3-lxml python3-pygame
+pip3 install PyYAML mavproxy --user
+echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.bashrc
+
+# install remaining dependencies
+sudo pip install gnureadline
+sudo pip install billiard
+sudo pip install numpy pyparsing
+sudo pip install MAVProxy
+
+sudo apt-get remove modemmanager
+python -m pip install empy
+pip install opencv-python==4.5.4.60
+conda install -c anaconda pexpect
+conda install -c conda-forge wxpython
+
+
+## install gazebo
+
+sudo apt install curl
+curl -sSL http://get.gazebosim.org | sh
+sudo apt-get install libgazebo11-dev
+
+# plugin installation
+
+git clone https://github.com/khancyr/ardupilot_gazebo
+cd ardupilot_gazebo
+mkdir build
+cd build
+sudo apt install cmake
+cmake ..
+make -j4
+sudo make install
+
+
+
+#run gazebo
+gazebo --verbose worlds/iris_arducopter_runway.world
+
+
+#run sitl and mavproxy
+
+cd ~/ardupilot/ArduCopter
+../Tools/autotest/sim_vehicle.py -f gazebo-iris --console --map
+
+
+
+#hata alındığında matplotlib kütüphanesi kuruldu
+
+
+#empy kütüphanesi kuruldu
+python -m pip install empy
+
+#bu kütüphaneleri indirip tekrar SITL komutunu çalıştırıssan çalışır
+
+
+
+
