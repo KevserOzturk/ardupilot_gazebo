@@ -1,0 +1,9 @@
+#pervaneleri döndürmek için
+mode loiter 
+arm throttle #arm ediyorum
+
+
+#uçağı kalkışa geçirmek için
+mode guided
+arm throttle
+takeoff 20
