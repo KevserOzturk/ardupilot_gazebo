@@ -1,0 +1,24 @@
+#https://ardupilot.org/planner/docs/mission-planner-installation.html
+
+
+#Download and install the latest version of MONO from here
+
+sudo apt install gnupg ca-certificates
+
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+
+echo "deb https://download.mono-project.com/repo/ubuntu stable-focal main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
+deb https://download.mono-project.com/repo/ubuntu stable-focal main
+
+sudo apt update
+
+sudo apt install mono-devel
+
+#write above the link on your browser for downloading mission planner zip file
+#https://firmware.ardupilot.org/Tools/MissionPlanner/MissionPlanner-latest.zip
+
+
+#extract the zip file,then goes on instructions
+
+cd MissionPlanner-latest/
+mono MissionPlanner.exe
